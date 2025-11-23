@@ -23,5 +23,24 @@ jobs:
           script: |
             cd ci-cd-test
             git pull
-            npm
-            
+
+            # Load nvm if present (common when Node is installed per-user)
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+
+            # Also try sourcing standard profile files
+            source ~/.profile || true
+            source ~/.bashrc || true
+
+            # debug (optional) - remove after confirming it works
+            echo "PATH=$PATH"
+            command -v node || true
+            node -v || true
+            command -v npm || true
+            npm -v || true
+
+            # Run the real npm command you need
+            npm insall
+            npm run build
+            npm run start
