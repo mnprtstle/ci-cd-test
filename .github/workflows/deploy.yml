@@ -41,6 +41,6 @@ jobs:
             npm -v || true
 
             # Run the real npm command you need
-            npm insall
+            npm install
             npm run build
             npm run start
